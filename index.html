@@ -1,41 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Image Upload</title>
+    <title>Upload to ImageKit</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
-      <h1>Upload Image</h1>
-      <p class="subtitle">
-        Choose a Image from your device or provide an image URL
-      </p>
-
-      <!-- File upload -->
-      <div class="inputGroup">
-        <label for="fileInput">Select from device</label>
-        <input type="file" id="fileInput" accept="image/*" />
+      <!-- Header Section -->
+      <div class="header">
+        <div class="icon-wrapper">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+        </div>
+        <h1>Upload to ImageKit</h1>
+        <p class="subtitle">
+          Upload images to your ImageKit Media Library
+        </p>
       </div>
 
-      <!-- URL upload -->
-      <div class="inputGroup">
-        <label for="urlInput">Or enter image URL</label>
-        <input
-          type="url"
-          id="urlInput"
-          placeholder="https://example.com/image.jpg"
-        />
-      </div>
+      <!-- Upload Form -->
+      <div class="upload-form">
+        <!-- File upload -->
+        <div class="inputGroup">
+          <label for="fileInput">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            Select from device
+          </label>
+          <input type="file" id="fileInput" accept="image/*" />
+        </div>
 
-      <!-- Upload button -->
-      <button id="uploadBtn">Upload</button>
+        <!-- Divider -->
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <!-- URL upload -->
+        <div class="inputGroup">
+          <label for="urlInput">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+              />
+              <path
+                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+              />
+            </svg>
+            Enter image URL
+          </label>
+          <input
+            type="url"
+            id="urlInput"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+
+        <!-- Upload button -->
+        <button id="uploadBtn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Upload Image
+        </button>
+      </div>
 
       <!-- Message + Result -->
       <div id="message" class="message"></div>
       <div id="result" class="result"></div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Developed by Ashish</p>
+        <p>Powered by <a href="https://github.com/imagekit-developer/imagekit-javascript" target="_blank">ImageKit JS SDK</a></p>
+      </footer>
     </div>
-    <script src="script.js"></script>
+    <!-- Option 1: Using ImageKit JS SDK -->
+    <script src="https://unpkg.com/@imagekit/javascript@5.0.0/dist/imagekit.min.js"></script>
+    <script src="script-sdk.js"></script>
+
+    <!-- Option 2: Using Upload API directly (uncomment below, comment above) -->
+    <!-- <script src="script.js"></script> -->
   </body>
 </html>

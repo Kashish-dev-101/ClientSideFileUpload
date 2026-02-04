@@ -1,45 +1,64 @@
 "use strict";
 
 const fileInput = document.querySelector("#fileInput");
-console.log(fileInput);
+// console.log(fileInput);
 
 const urlInput = document.querySelector("#urlInput");
-console.log(urlInput);
+// console.log(urlInput);
 
 const uploadBtn = document.querySelector("#uploadBtn");
-console.log(uploadBtn);
+// console.log(uploadBtn);
 
 const message = document.querySelector("#message");
-console.log(message);
+// console.log(message);
 
 const result = document.querySelector("#result");
-console.log(result);
+// console.log(result);
 
 const ImageKitAuthEndpoint = "http://localhost:8000/ik-auth";
 
+// store original button content
+const originalBtnContent = uploadBtn.innerHTML;
+
+// helper to show loading state
+function setLoading(isLoading) {
+  if (isLoading) {
+    uploadBtn.classList.add("loading");
+    uploadBtn.innerHTML = '<div class="spinner"></div> Uploading...';
+  } else {
+    uploadBtn.classList.remove("loading");
+    uploadBtn.innerHTML = originalBtnContent;
+  }
+}
+
 uploadBtn.addEventListener("click", async () => {
-  console.log("Upload button clicked");
+  // console.log("Upload button clicked");
 
   // reset the message and result
   message.textContent = "";
+  message.classList.remove("success", "error");
   result.textContent = "";
 
   try {
     // pick the file from input or URL
     let file = fileInput.files[0];
-    console.log("File selected:", file);
+    // console.log("File selected:", file);
     let url = urlInput.value.trim();
-    console.log("URL entered:", url);
+    // console.log("URL entered:", url);
 
     if (!file && !url) {
       message.textContent = "Please select a file or enter a URL.";
+      message.classList.add("error");
       return;
     }
+
+    // show loading state
+    setLoading(true);
 
     // get authentication parameters from the server
     const authResponse = await fetch(ImageKitAuthEndpoint);
     const authData = await authResponse.json();
-    console.log("Auth data:", authData);
+    // console.log("Auth data:", authData);
 
     const formData = new FormData();
 
@@ -67,7 +86,7 @@ uploadBtn.addEventListener("click", async () => {
     );
 
     const uploadData = await uploadResponse.json();
-    console.log("Upload response:", uploadData);
+    // console.log("Upload response:", uploadData);
 
     if (uploadResponse.ok) {
       message.textContent = "Upload successful!";
@@ -77,8 +96,10 @@ uploadBtn.addEventListener("click", async () => {
       throw new Error(uploadData.message || "Upload failed");
     }
   } catch (err) {
-    console.error("Upload error:", err);
+    // console.error("Upload error:", err);
     message.textContent = `Error: ${err.message}`;
     message.classList.add("error");
+  } finally {
+    setLoading(false);
   }
 });
