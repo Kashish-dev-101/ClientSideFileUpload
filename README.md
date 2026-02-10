@@ -2,6 +2,8 @@
 
 A demo application showing how to implement secure client-side file uploads using [ImageKit](https://imagekit.io). This project demonstrates two approaches: using the **ImageKit JavaScript SDK** and the **Upload API** directly.
 
+![App Screenshot](Screenshot%202026-02-10%20at%2010.01.00%20PM.png)
+
 ## Features
 
 - Upload images from device (file picker)
