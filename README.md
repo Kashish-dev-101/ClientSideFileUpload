@@ -190,6 +190,4 @@ ISC
 
 ---
 
-Developed by **Ashish**
-
-Powered by [ImageKit](https://imagekit.io)
+Powered by [ImageKit JS SDK](https://imagekit.io)
