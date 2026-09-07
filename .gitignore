@@ -15,3 +15,6 @@ npm-debug.log*
 .idea/
 .vscode/
 code-walkthrough.txt
+
+# Claude Code config
+.claude/
